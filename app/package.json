@@ -1,0 +1,17 @@
+{
+  "name": "chia4s-assist",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ju, a assistente virtual com IA do Protocolo 4S Consultório",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "DEV_FAKE=1 node dev-server.js",
+    "dev:real": "node dev-server.js",
+    "test": "node --test tests/*.test.js",
+    "e2e": "node e2e/run.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.45.4"
+  }
+}
