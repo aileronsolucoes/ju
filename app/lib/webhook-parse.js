@@ -106,6 +106,8 @@ export function lerWebhook(body, headers = {}) {
     try { b = JSON.parse(b); } catch { b = Object.fromEntries(new URLSearchParams(b)); }
   }
   b = b || {};
+  // Cakto (webhook V2) manda "data" como lista: usa o primeiro pedido.
+  if (Array.isArray(b.data) && b.data.length) b = { ...b, data: b.data[0] };
   const plataforma = detectarPlataforma(b, headers);
   let email = pick(b, EMAIL_PATHS);
   if (!isEmail(email)) email = acharEmail(b);
