@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1e4d3b">
+  <meta name="robots" content="noindex">
+  <title>Painel · Chia 4S Assist</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <header class="topo">
+    <img src="/img/ju-avatar.svg" alt="" width="36" height="36">
+    <div>
+      <strong>Painel da Ju</strong>
+      <span>Chia 4S Assist</span>
+    </div>
+    <button id="btn-sair" class="sair" hidden>Sair</button>
+  </header>
+
+  <main>
+    <section id="login" class="cartao estreito">
+      <h1>Entrar no painel</h1>
+      <p class="sub">Use a senha definida em ADMIN_PASSWORD.</p>
+      <form id="form-login">
+        <input type="password" id="senha" placeholder="Senha do painel" autocomplete="current-password" required>
+        <button class="btn" type="submit">Entrar</button>
+      </form>
+      <p class="erro" id="erro-login" hidden></p>
+    </section>
+
+    <section id="painel" hidden>
+      <nav class="abas" role="tablist">
+        <button role="tab" class="aba ativa" data-aba="solicitacoes">Solicitações <span class="contador" id="cont-abertas"></span></button>
+        <button role="tab" class="aba" data-aba="compradoras">Compradoras</button>
+        <button role="tab" class="aba" data-aba="importar">Importar</button>
+      </nav>
+
+      <div class="pagina" id="aba-solicitacoes">
+        <div class="filtros">
+          <select id="filtro-status" aria-label="Filtrar por situação">
+            <option value="aberta">Abertas</option>
+            <option value="resolvida">Resolvidas</option>
+            <option value="todas">Todas</option>
+          </select>
+          <button class="btn-leve" id="btn-atualizar">Atualizar</button>
+        </div>
+        <p class="ajuda">Reembolsos aparecem primeiro. Faça o reembolso na plataforma de vendas e depois marque como resolvida.</p>
+        <div id="lista-solicitacoes" class="lista"></div>
+      </div>
+
+      <div class="pagina" id="aba-compradoras" hidden>
+        <form id="form-busca" class="filtros">
+          <input type="search" id="busca" placeholder="Buscar por e-mail ou nome">
+          <button class="btn-leve" type="submit">Buscar</button>
+        </form>
+        <div id="lista-compradoras" class="lista"></div>
+      </div>
+
+      <div class="pagina" id="aba-importar" hidden>
+        <div class="cartao">
+          <h2>Importar compradoras</h2>
+          <p class="sub">Colunas: <code>email,nome,principal,upsell1</code> e, se quiser, <code>upsell1_desde</code> (data da compra do 4S Consultório, dd/mm/aaaa). Use sim/não ou 1/0. Aceita vírgula ou ponto e vírgula.</p>
+          <label class="arquivo">
+            <input type="file" id="arquivo" accept=".csv,text/csv">
+            <span>Escolher arquivo .csv</span>
+          </label>
+          <textarea id="csv" rows="8" placeholder="email,nome,principal,upsell1&#10;maria@email.com,Maria Silva,sim,sim"></textarea>
+          <button class="btn" id="btn-importar">Importar</button>
+          <div id="resultado-import" class="resultado" hidden></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast" hidden></div>
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>
