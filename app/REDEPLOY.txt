@@ -1,0 +1,1 @@
+Redeploy: APP_URL = https://app.viverbem24h.com (2026-10-31T20:03:57.230Z)
